@@ -37,6 +37,7 @@ function handelsubmit(event) {
         let imageURL = event.target.Imageurl.value;
 
         let newEmployee = new Employee(name, department, level, imageURL)
+        saveData();
 newEmployee.gitId();
 newEmployee.getSalary();
 newEmployee.showEmployee();
@@ -121,9 +122,4 @@ Employee.prototype.showEmployee = function () {
 
         divadd.appendChild(divShow);
 }
-
-
-form.addEventListener("submit", handelsubmit)
-
-
-
+form.addEventListener("submit", handelsubmit);

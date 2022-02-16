@@ -5,22 +5,29 @@ margin-right: 20;
 color: white;
 }
 
-body div {   border: 10px solid black;
-width: 400px;}
+
+
 header{color: white}
 header {background-color: black;}
 footer{background-color: black;}
 footer p { color: white;}
 body form { background-color:wheat;
     width: 300px;
-    border: 15px solid black;
+  
     padding: 50px;
     margin: 20px;
 }
 header img{ margin-left: auto; }
-.divadd Imageurl
-{
+.show img{
     background-color: azure;
-width: 15px;
-height:15px;
+width: 100px;
+height:100px;
+}
+#divadd {
+   display:grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   gap : 50px;
+}
+.show {
+    border: 15px solid black;
 }
