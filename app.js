@@ -122,21 +122,4 @@ Employee.prototype.showEmployee = function () {
 
         divadd.appendChild(divShow);
 }
-
-renderAll();
-form.addEventListener("submit", handelsubmit)
-
-
-////////////////////////////////////////////
-
-function saveData()
-{
-        let formatedData =JSON.stringify(allEmployees);
-        localStorage.setItem("Employee", allEmployees);
-
-}
-
-
-function getData (){
-        let e
-}
+form.addEventListener("submit", handelsubmit);
