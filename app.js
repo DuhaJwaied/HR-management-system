@@ -2,9 +2,9 @@
 
 let allEmployees = [];
 let employeeStartPoint = 999;
-let form= document.getElementById("form")
+let form = document.getElementById("form")
 let divadd = document.getElementById("divadd")
-let add  =  document.getElementById("submit")
+let add = document.getElementById("submit")
 
 function Employee(FullName, Department, Level, ImgURL) {
 
@@ -14,7 +14,7 @@ function Employee(FullName, Department, Level, ImgURL) {
         this.Level = Level;
         this.ImgURL = ImgURL;
         this.Salary = 0;
-      allEmployees.push(this);
+        allEmployees.push(this);
 
 }
 
@@ -35,12 +35,11 @@ function handelsubmit(event) {
         let department = event.target.Department.value;
         let level = event.target.Level.value;
         let imageURL = event.target.Imageurl.value;
-
         let newEmployee = new Employee(name, department, level, imageURL)
-        saveData();
-newEmployee.gitId();
-newEmployee.getSalary();
-newEmployee.showEmployee();
+
+        newEmployee.gitId();
+        newEmployee.getSalary();
+        newEmployee.showEmployee();
         form.reset();
 }
 
@@ -70,24 +69,11 @@ Employee.prototype.getSalary = function () {
         }
 
         let totalSalary = Math.random() * (max - min + 1) + min;
-       
+
         totalSalary = totalSalary.toFixed();
         this.Salary = totalSalary - totalSalary * 0.075;
 
 }
-
-function renderAll() {
-        for (let i = 0; i < allEmployees.length; i++) {
-         
-                allEmployees[i].gitId();
-                allEmployees[i].getSalary();
-                allEmployees[i].showEmployee();
-           
-
-        }
-
-}
-
 
 
 Employee.prototype.showEmployee = function () {
@@ -122,4 +108,17 @@ Employee.prototype.showEmployee = function () {
 
         divadd.appendChild(divShow);
 }
+
+
+function renderAll() {
+        for (let i = 0; i < allEmployees.length; i++) {
+
+                allEmployees[i].gitId();
+                allEmployees[i].getSalary();
+                allEmployees[i].showEmployee();
+
+
+        }
+}
+renderAll();
 form.addEventListener("submit", handelsubmit);

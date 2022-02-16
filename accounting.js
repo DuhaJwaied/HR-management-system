@@ -18,3 +18,10 @@
 //         }
 // }
 // console.log("hello");
+
+//let formatedData = JSON.stringify(allEmployee);
+//localStorage.setItem("employee", formatedData);
+//*
+//*
+//*
+//*
