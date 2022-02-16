@@ -1,26 +1,53 @@
 `use strict`;
 
 let allEmployees = [];
+let employeeStartPoint = 999;
+let form= document.getElementById("form")
+let divadd = document.getElementById("divadd")
+let add  =  document.getElementById("submit")
 
-function Employee(EmployeeID, FullName, Department, Level, ImgURL) {
+function Employee(FullName, Department, Level, ImgURL) {
 
-        this.EmployeeID = EmployeeID;
+        this.EmployeeID = 0;
         this.FullName = FullName;
         this.Department = Department;
         this.Level = Level;
         this.ImgURL = ImgURL;
         this.Salary = 0;
-        allEmployees.push(this);
+      allEmployees.push(this);
+
 }
 
-let GhaziSamer = new Employee("1000", "Ghazi Samer", " Administration", "Senior", "images/1000.jpg")
-let Lana_Ali = new Employee("1001", "Lana_Ali", "Finance ", "Senior", "images/1001.jpg")
-let Tamara_Ayoub = new Employee("1002", "Tamara_Ayoub", "Marketing ", "Senior", "images/1002.png")
-let Safi_Walid = new Employee("1003", "Safi_Walid", " Administration", "Mid-Senior", "images/1003.jpg")
-let Omar_Zaid = new Employee("1004", "Omar_Zaid", "Development ", "Senior", "images/1004.png")
-let Rana_Saleh = new Employee("1005", "Rana_Saleh", "Development ", "Senior", "images/1005.jpg")
-let Hadi_Ahmad = new Employee("1006", "Hadi_Ahmad", " Finance", "Mid-Senior", "images/1006.jpg")
+let GhaziSamer = new Employee("Ghazi Samer", " Administration", "Senior", "images/1000.jpg")
+let Lana_Ali = new Employee("Lana_Ali", "Finance ", "Senior", "images/1001.jpg")
+let Tamara_Ayoub = new Employee("Tamara_Ayoub", "Marketing ", "Senior", "images/1002.png")
+let Safi_Walid = new Employee("Safi_Walid", " Administration", "Mid-Senior", "images/1003.jpg")
+let Omar_Zaid = new Employee("Omar_Zaid", "Development ", "Senior", "images/1004.png")
+let Rana_Saleh = new Employee("Rana_Saleh", "Development ", "Senior", "images/1005.jpg")
+let Hadi_Ahmad = new Employee("Hadi_Ahmad", " Finance", "Mid-Senior", "images/1006.jpg")
 
+
+
+function handelsubmit(event) {
+        event.preventDefault();
+
+        let name = event.target.name.value;
+        let department = event.target.Department.value;
+        let level = event.target.Level.value;
+        let imageURL = event.target.Imageurl.value;
+
+        let newEmployee = new Employee(name, department, level, imageURL)
+newEmployee.gitId();
+newEmployee.getSalary();
+newEmployee.showEmployee();
+        form.reset();
+}
+
+function generateId() { return ++employeeStartPoint; }
+
+Employee.prototype.gitId = function () {
+        this.EmployeeID = generateId();
+}
 
 
 Employee.prototype.getSalary = function () {
@@ -42,29 +69,61 @@ Employee.prototype.getSalary = function () {
         }
 
         let totalSalary = Math.random() * (max - min + 1) + min;
-        console.log(totalSalary);
+       
         totalSalary = totalSalary.toFixed();
         this.Salary = totalSalary - totalSalary * 0.075;
 
 }
 
+function renderAll() {
+        for (let i = 0; i < allEmployees.length; i++) {
+         
+                allEmployees[i].gitId();
+                allEmployees[i].getSalary();
+                allEmployees[i].showEmployee();
+           
 
-let div = document.getElementById("divone");
+        }
 
-Employee.prototype.render = function () {
-        let par = document.createElement("p");
-        par.textContent = `     Name : ${this.FullName}---> Salary: ${this.Salary}`;
-        div.appendChild(par)
 }
 
-for (let i = 0; i < allEmployees.length; i++) {
-        allEmployees[i].getSalary();
 
-        allEmployees[i].render();
-        console.log(allEmployees[i]);
+
+Employee.prototype.showEmployee = function () {
+
+        let divShow = document.createElement("divadd");
+        divShow.setAttribute(`class`, "show");
+
+        let imgShow = document.createElement("img");
+        imgShow.setAttribute("src", this.ImgURL);
+        divShow.appendChild(imgShow);
+
+        let title = document.createElement("h3");
+        title.textContent = "Name :" + this.FullName;
+        divShow.appendChild(title);
+
+        let titleId = document.createElement("h3");
+        titleId.textContent = "ID :" + this.EmployeeID;
+        divShow.appendChild(titleId);
+
+        let titleDeb = document.createElement("h3");
+        titleDeb.textContent = "Department :" + this.Department;
+        divShow.appendChild(titleDeb);
+
+
+        let salary = document.createElement("h3");
+        salary.textContent = "Salary :" + this.Salary;
+        divShow.appendChild(salary);
+
+        let titleLevel = document.createElement("h3");
+        titleLevel.textContent = "level :" + this.Level;
+        divShow.appendChild(titleLevel);
+
+        divadd.appendChild(divShow);
 }
-// Create a function to generate a unique four digits employee id number.
-function UniqID() {
-        var val = Math.floor(1000 + Math.random() * 9000);
-}
-//You will add an event listener to get the data from the form instead of having hard coded data.
+
+
+form.addEventListener("submit", handelsubmit)
+
+
+
