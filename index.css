@@ -4,9 +4,17 @@
 margin-right: 20;
 color: white;
 }
+
+body div {   border: 10px solid black;
+width: 400px;}
 header{color: white}
 header {background-color: black;}
 footer{background-color: black;}
 footer p { color: white;}
-
-header img{ margin-left: auto;}
+body form { background-color:wheat;
+    width: 300px;
+    border: 15px solid black;
+    padding: 50px;
+    margin: 20px;
+}
+header img{ margin-left: auto; }

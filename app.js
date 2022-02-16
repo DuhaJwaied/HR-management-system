@@ -43,7 +43,7 @@ Employee.prototype.getSalary = function () {
 
         let totalSalary = Math.random() * (max - min + 1) + min;
         console.log(totalSalary);
-        totalSalary=totalSalary.toFixed();
+        totalSalary = totalSalary.toFixed();
         this.Salary = totalSalary - totalSalary * 0.075;
 
 }
@@ -53,7 +53,7 @@ let div = document.getElementById("divone");
 
 Employee.prototype.render = function () {
         let par = document.createElement("p");
-        par.textContent = ` Name : ${this.FullName}  salary: ${this.Salary}`;
+        par.textContent = `     Name : ${this.FullName}---> Salary: ${this.Salary}`;
         div.appendChild(par)
 }
 
@@ -63,10 +63,8 @@ for (let i = 0; i < allEmployees.length; i++) {
         allEmployees[i].render();
         console.log(allEmployees[i]);
 }
-
-
-
-
-
-
-       // document.write ($ { this.FullName } , $ {this.Img} )
+// Create a function to generate a unique four digits employee id number.
+function UniqID() {
+        var val = Math.floor(1000 + Math.random() * 9000);
+}
+//You will add an event listener to get the data from the form instead of having hard coded data.
