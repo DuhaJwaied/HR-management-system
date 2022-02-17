@@ -7,3 +7,10 @@ header nav{float:right;
    footer{background-color: black;}
    footer p { color: white;}
    header img{ margin-left: auto;}
+
+   
+     #tableStorge {
+         border: 1px solid;
+  border-radius: 10px;
+       }
+   
