@@ -105,7 +105,6 @@ Employee.prototype.showEmployee = function () {
         let titleLevel = document.createElement("h3");
         titleLevel.textContent = "level :" + this.Level;
         divShow.appendChild(titleLevel);
-
         divadd.appendChild(divShow);
 }
 
@@ -119,6 +118,7 @@ function renderAll() {
 
 
         }
-}
+};
+
 renderAll();
 form.addEventListener("submit", handelsubmit);

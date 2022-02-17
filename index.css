@@ -1,23 +1,28 @@
 
 
- header nav{float:right;
+ header a{float:right;
 margin-right: 20;
 color: white;
+
+
+
 }
 
-
-
 header{color: white}
-header {background-color: black;}
+header {background-color:black;}
 footer{background-color: black;}
 footer p { color: white;}
-body form { background-color:wheat;
+/* body {
+    background-color:wheat ;
+} */
+body form { background-color:Tan;
     width: 300px;
   
     padding: 50px;
     margin: 20px;
 }
-header img{ margin-left: auto; }
+header img{ margin-left: auto;
+    height:120px; }
 .show img{
     background-color: azure;
 width: 100px;
