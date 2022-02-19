@@ -141,9 +141,9 @@ function numberOfEmployee(department) {
         let parseEmployee = JSON.parse(employee);
 
 
+console.log(parseEmployee);
 
-
-        for (let i = 0; i < parseEmployee.length; i++) {
+        for (let i = 0; i < parseEmployee.length ; i++) {
                 if (parseEmployee[i].department == "Administration") {
                         numberOfEmployee = numberOfEmployee + 1;
 
