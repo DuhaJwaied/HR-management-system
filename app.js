@@ -5,7 +5,11 @@ let employeeStartPoint = 999;
 let form = document.getElementById("form")
 let divadd = document.getElementById("divadd")
 let add = document.getElementById("submit")
-
+let fullNameForm;
+let departmentForm;
+let levelForm;
+let imageURLForm;
+let btn = document.getElementById("submit");
 function Employee(FullName, Department, Level, ImgURL) {
 
         this.EmployeeID = 0;
@@ -18,13 +22,13 @@ function Employee(FullName, Department, Level, ImgURL) {
 
 }
 
-let GhaziSamer = new Employee("Ghazi Samer", " Administration", "Senior", "images/1000.jpg")
-let Lana_Ali = new Employee("Lana_Ali", "Finance ", "Senior", "images/1001.jpg")
-let Tamara_Ayoub = new Employee("Tamara_Ayoub", "Marketing ", "Senior", "images/1002.png")
-let Safi_Walid = new Employee("Safi_Walid", " Administration", "Mid-Senior", "images/1003.jpg")
-let Omar_Zaid = new Employee("Omar_Zaid", "Development ", "Senior", "images/1004.png")
-let Rana_Saleh = new Employee("Rana_Saleh", "Development ", "Senior", "images/1005.jpg")
-let Hadi_Ahmad = new Employee("Hadi_Ahmad", " Finance", "Mid-Senior", "images/1006.jpg")
+// let GhaziSamer = new Employee("Ghazi Samer", " Administration", "Senior", "images/1000.jpg")
+// let Lana_Ali = new Employee("Lana_Ali", "Finance ", "Senior", "images/1001.jpg")
+// let Tamara_Ayoub = new Employee("Tamara_Ayoub", "Marketing ", "Senior", "images/1002.png")
+// let Safi_Walid = new Employee("Safi_Walid", " Administration", "Mid-Senior", "images/1003.jpg")
+// let Omar_Zaid = new Employee("Omar_Zaid", "Development ", "Senior", "images/1004.png")
+// let Rana_Saleh = new Employee("Rana_Saleh", "Development ", "Senior", "images/1005.jpg")
+// let Hadi_Ahmad = new Employee("Hadi_Ahmad", " Finance", "Mid-Senior", "images/1006.jpg")
 
 
 
@@ -40,6 +44,7 @@ function handelsubmit(event) {
         newEmployee.gitId();
         newEmployee.getSalary();
         newEmployee.showEmployee();
+
         form.reset();
 }
 
@@ -109,16 +114,67 @@ Employee.prototype.showEmployee = function () {
 }
 
 
-function renderAll() {
-        for (let i = 0; i < allEmployees.length; i++) {
+function handelSubmit(event) {
+        event.preventDefault();
+        fullNameForm = event.target.name.value;
+        departmentForm = event.target.Department.value;
+        levelForm = event.target.Level.value;
+        imageURLForm = event.target.Imageurl.value;
+        let newEmployee = new Employee(fullNameForm, departmentForm, levelForm, imageURLForm);
+        divadd.innerHTML = "";
+        saveEmployee();
 
-                allEmployees[i].gitId();
-                allEmployees[i].getSalary();
-                allEmployees[i].showEmployee();
+        newEmployee.gitId();
+        newEmployee.getSalary();
+        newEmployee.showEmployee();
+        form.reset();
+}
 
+// function renderAll() {
+//         for (let i = 0; i < allEmployees.length; i++) {
+
+//                 allEmployees[i].gitId();
+//                 allEmployees[i].getSalary();
+//                 allEmployees[i].showEmployee();
+
+
+//         }
+// };
+// renderAll();
+// form.addEventListener("submit", handelsubmit);
+
+
+
+if (localStorage.getItem("employee") == null) {
+        let ghazi = new Employee("Ghazi Samer", "Administration", "Senior", "./Photos/1.jpg");
+        let lana = new Employee("Lana Ali", "Finance", "Senior", "./Photos/3.jpg");
+        let tamara = new Employee("Tamara Ayoub", "Marketing", "Senior", "./Photos/5.jpg");
+        let safi = new Employee("Safi Walid", "Administration", "Mid-Senior", "./Photos/4.jpg");
+        let omar = new Employee("Omar Zaid", "Development", "Senior", "./Photos/6.jpg");
+        let rana = new Employee("Rana Saleh", "Development", "Junior", "./Photos/5.jpg");
+        let hadi = new Employee("Hadi Ahmad", "Finance", "Mid-Senior", "./Photos/6.jpg");
+        saveEmployee();
+
+} else {
+
+        let employee = localStorage.getItem("employee");
+        let parseEmployee = JSON.parse(employee);
+        for (let i = 0; i < parseEmployee.length; i++) {
+                let newEmployee = new Employee(parseEmployee[i].FullName, parseEmployee[i].Department, parseEmployee[i].Level, parseEmployee[i].Imageurl);
 
         }
-};
+        for (let i = 0; i < allEmployees.length; i++) {
+                allEmployees[i].showEmployee();
 
-renderAll();
-form.addEventListener("submit", handelsubmit);
+        }
+
+}
+
+function saveEmployee() {
+        let formatedData = JSON.stringify(allEmployees);
+        localStorage.setItem("employee", formatedData);
+        for (let i = 0; i < allEmployees.length; i++) {
+                allEmployees[i].showData();
+
+        }
+}
